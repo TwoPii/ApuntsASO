@@ -1,3 +1,51 @@
+Instalació -> Al full
+----------------------------------------
+Aplicacions:
 
-Hola bro, roger that
+Connexió ftp -> ftp (ip), get file
+Més d'un fitxer -> mget
+llistar contingut tar -> tar -tvf file
+extreure tar -> tar -xvf file
+"" "" comprimit -> tar -xzvf file 
+link -> ln file /directory
+softlink -> ln -s file link
+purgue -> esborra paquets i fitxers de configuració
+
+./configure pot llistar errors, llavors sudo apt-get install i la llibreria que falta.
+make
+make install
+
+
+----------------------------------------
+Usuaris:
+
+/etc/shadow -> passwords encriptats. expiració,
+/etc/passwd -> usuaris
+/etc/group -> grups
+
+chmod +w/r/x | 777 fitxer
+chown propietari:grup fitxer
+Definició prompt -> $PS1
+Crear usuari manualment -> UID,username, home, shell, grups
+Desactivar usuari -> canviar shell a /bin/false o canviar el password
+Editar contrassenyes -> passwd
+Usuaris automàticament -> useradd, adduser:
+1. Directori, bash
+Esborrar fitxers d'un usuari:
+find / -user (usuari) -exec rm -fr{} \
+Xargs per a buffers llargs i pipe per comprimir:
+find / -user (usuari) | xargs tar -czf
+Shutdown -> només root
+------------------------------------------
+Backup:
+
+date +%Y%m%d%H%M%S -> data actual
+Copia completa -> tar -cf /backup/backup-etc-nivell0-`date +.....`.tar /etc
+Fitxer comprimit tarda més al recuperar-se. amb opció -z
+Excluir fitxers amb opció -x (fitxer)
+md5sum fitxer > fitxer.asc
+Copia incremental -> tar --newer="date" -cf /backup/backupinc.tar /root
+restaurar copia -> tar -zf fitxer
+restaurar parcialment -> tar -xvf foo.tar home/foo/bar 
+rsync -avz /root -e ssh root@localhost:/backup automaticament sincronitza
 
